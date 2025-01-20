@@ -9,14 +9,22 @@ function createTestList() {
 }
 createTestList();
 
+
+
 function setupEventDelegation(selector) {
   const list = document.querySelector(selector);
+  let lastClickedItem = null;
 
   list.addEventListener("click", (event) => {
     if (event.target.tagName === "LI") {
       const text = event.target.textContent;
 
-      console.log(`${text}`);
+      if (lastClickedItem === event.target) {
+        return;
+      }
+      lastClickedItem = event.target;
+
+      console.log(text);
     }
   });
 }
